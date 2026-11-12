@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f47732">
+  <meta name="description" content="UTAU音源・温音ミカンの公式サイト。音源配布、キャラクター紹介、利用規約。">
+  <title>温音ミカン Official Website</title>
+  <style>
+    :root {
+      --orange: #f47732;
+      --orange-deep: #d95720;
+      --cream: #fff8ef;
+      --ink: #30251f;
+      --muted: #76675e;
+      --green: #398b55;
+      --line: rgba(92, 55, 34, .13);
+      --shadow: 0 18px 55px rgba(106, 59, 27, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; color: var(--ink);
+      font-family: system-ui, -apple-system, "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(255,190,125,.18), transparent 25rem),
+        linear-gradient(180deg, #fffaf4 0%, #fff 55%, #fff8ef 100%);
+      line-height: 1.8;
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    .notice {
+      padding: 10px 16px; text-align: center; color: #fff;
+      background: #33251f; font-size: .86rem; font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .notice strong { color: #ffc18e; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,250,244,.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: 1120px; margin: auto; padding: 12px 22px;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; }
+    .brand-mark {
+      width: 38px; height: 38px; display: grid; place-items: center;
+      border-radius: 13px; color: white; background: var(--orange);
+      box-shadow: 0 5px 15px rgba(244,119,50,.25);
+    }
+    .brand-mark svg { width: 23px; height: 23px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-links { display: flex; gap: 18px; align-items: center; }
+    .nav-links a { font-size: .9rem; text-decoration: none; color: var(--muted); font-weight: 700; }
+    .nav-links a:hover { color: var(--orange-deep); }
+    .lang-button {
+      border: 0; border-radius: 50%; width: 42px; height: 42px;
+      background: #fff0e4; cursor: pointer; font-size: 1.35rem;
+      box-shadow: inset 0 0 0 1px rgba(244,119,50,.16);
+      transition: transform .2s;
+    }
+    .lang-button:hover { transform: rotate(-12deg) scale(1.06); }
+    main { overflow: hidden; }
+    .hero {
+      max-width: 1120px; min-height: 620px; margin: auto; padding: 66px 28px 50px;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 28px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--orange-deep); font-size: .82rem; font-weight: 900;
+      letter-spacing: .13em; text-transform: uppercase;
+    }
+    .eyebrow::before { content:""; width: 24px; height: 2px; background: var(--orange); }
+    h1 { margin: 14px 0 8px; font-size: clamp(3rem, 7vw, 5.8rem); line-height: 1.08; letter-spacing: -.06em; }
+    h1 span { color: var(--orange); }
+    .subtitle { margin: 0 0 22px; color: var(--muted); font-weight: 700; font-size: 1.05rem; }
+    .hero-copy { max-width: 500px; color: #65564d; }
+    .actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+    .btn {
+      min-height: 48px; display: inline-flex; justify-content: center; align-items: center;
+      padding: 11px 20px; border-radius: 999px; border: 1px solid transparent;
+      text-decoration: none; font-weight: 800; cursor: pointer; transition: .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: white; background: var(--orange); box-shadow: 0 8px 20px rgba(244,119,50,.23); }
+    .btn-primary:hover { background: var(--orange-deep); }
+    .btn-outline { background: white; border-color: #efd8c8; color: var(--ink); }
+    .hero-art {
+      position: relative; min-height: 490px; display: grid; place-items: center;
+      isolation: isolate;
+    }
+    .hero-art::before {
+      content: ""; position: absolute; width: min(85%, 430px); aspect-ratio: 1;
+      border-radius: 50%; background: radial-gradient(circle, #ffe3c8 0%, #fff0e2 58%, rgba(255,240,226,0) 70%);
+      z-index: -1;
+    }
+    .hero-art img {
+      display: block; width: min(100%, 440px); max-height: 570px; object-fit: contain;
+      filter: drop-shadow(0 18px 18px rgba(60,35,20,.12));
+    }
+    .float-note {
+      position: absolute; right: 2%; bottom: 12%; padding: 10px 16px;
+      background: white; border: 1px solid var(--line); border-radius: 16px;
+      box-shadow: var(--shadow); color: var(--green); font-weight: 900; transform: rotate(4deg);
+    }
+    .section { max-width: 1050px; margin: auto; padding: 78px 26px; }
+    .section-head { text-align: center; margin-bottom: 34px; }
+    .section-head small { color: var(--orange-deep); font-weight: 900; letter-spacing: .15em; }
+    h2 { margin: 5px 0; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -.04em; }
+    .section-head p { color: var(--muted); margin: 6px 0 0; }
+    .intro-card, .profile-card, .download-card {
+      background: rgba(255,255,255,.88); border: 1px solid var(--line);
+      border-radius: 26px; box-shadow: var(--shadow);
+    }
+    .intro-card { padding: 30px; text-align: center; max-width: 760px; margin: auto; }
+    .intro-card p { margin: 0; color: #66564d; }
+    .profile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .profile-card { padding: 20px 22px; }
+    .profile-card .label { color: var(--orange-deep); font-size: .82rem; font-weight: 900; letter-spacing: .06em; }
+    .profile-card .value { margin-top: 3px; font-size: 1.08rem; font-weight: 800; }
+    .download-card {
+      padding: 34px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      background: linear-gradient(120deg, #fff 0%, #fff1e5 100%);
+    }
+    .download-card h3 { margin: 0 0 5px; font-size: 1.45rem; }
+    .download-card p { margin: 0; color: var(--muted); }
+    .download-icon {
+      flex: 0 0 58px; width: 58px; height: 58px; display: grid; place-items: center;
+      border-radius: 18px; background: #ffdfc6; color: var(--orange-deep);
+    }
+    .download-icon svg { width: 29px; height: 29px; }
+    .download-copy { flex: 1; }
+    .download-card .btn { white-space: nowrap; }
+    .legal-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    footer { padding: 30px 20px 42px; text-align: center; color: var(--muted); font-size: .86rem; }
+    footer a { color: var(--orange-deep); font-weight: 800; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 50; display: none; place-items: center;
+      padding: 18px; background: rgba(35,25,20,.58); backdrop-filter: blur(5px);
+    }
+    .modal-backdrop.open { display: grid; }
+    .modal {
+      width: min(100%, 720px); max-height: min(84vh, 760px); overflow: auto;
+      padding: 26px; border-radius: 24px; background: #fffaf5; box-shadow: 0 24px 80px rgba(0,0,0,.25);
+    }
+    .modal-top { display: flex; justify-content: space-between; align-items: center; gap: 15px; position: sticky; top: -26px; padding: 8px 0 14px; background: #fffaf5; }
+    .modal h2 { font-size: 1.55rem; margin: 0; }
+    .close {
+      border: 0; width: 38px; height: 38px; border-radius: 50%;
+      background: #f7e7da; cursor: pointer; font-size: 1.25rem;
+    }
+    .legal-content { color: #55473f; font-size: .94rem; }
+    .legal-content h3 { color: var(--orange-deep); margin: 22px 0 5px; font-size: 1.05rem; }
+    .legal-content ul { padding-left: 1.3rem; }
+    .legal-content li { margin: 5px 0; }
+    @media (max-width: 700px) {
+      .nav { padding: 10px 15px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 48px 20px 28px; gap: 5px; }
+      .hero-copy { margin: auto; }
+      .eyebrow { justify-content: center; }
+      .actions { justify-content: center; }
+      .hero-art { min-height: 390px; margin-top: 0; }
+      .hero-art img { width: min(88%, 350px); max-height: 440px; }
+      .float-note { right: 3%; bottom: 8%; font-size: .85rem; }
+      .section { padding: 58px 18px; }
+      .intro-card { padding: 23px 19px; }
+      .profile-grid { grid-template-columns: 1fr; gap: 10px; }
+      .profile-card { padding: 16px 18px; }
+      .download-card { padding: 23px 20px; flex-wrap: wrap; }
+      .download-card .btn { width: 100%; }
+      .modal { padding: 20px; }
+      .modal-top { top: -20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>みかんボタンで開始</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* スタート画面のスタイル */
+        #start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(255, 165, 0, 0.85); /* ふわっと柔いみかん色 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        /* 案内テキストのスタイル */
+        .notice-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            max-width: 600px;
+        }
+
+        /* 開始ボタン（みかんボタン）のスタイル */
+        #mikan-button {
+            background-color: #ff7f00;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        #mikan-button:hover {
+            background-color: #ff6600;
+            transform: scale(1.05);
+        }
+
+        #mikan-button:active {
+            transform: scale(0.98);
+        }
+
+        /* メインコンテンツ（開始後に表示される部分） */
+        #main-content {
+            padding: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- スタート画面 -->
+    <div id="start-screen">
+        <div class="notice-text">
+            JP みかんボタンを押して開始！<br>※注意 英語になりますがみかんボタンを押すと戻ります<br><br>
+            EN Press the orange button to start!
+        </div>
+        <button id="mikan-button">開始する</button>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div id="main-content">
+        <h1>ようこそ！</h1>
+        <p>温音ミカンの詳細ウェブです。</p>
+    </div>
+
+    <script>
+        // ボタンを押したときの処理
+        document.getElementById('mikan-button').addEventListener('click', function() {
+            const startScreen = document.getElementById('start-screen');
+            // ふわっとフェードアウトさせる
+            startScreen.style.opacity = '0';
+            setTimeout(function() {
+                startScreen.style.display = 'none';
+            }, 500); // 0.5秒後に非表示にする
+        });
+    </script>
+
+</body>
+</html>
+
+  <div class="notice">
+    <span data-ja="【注意】公式アカウントはXにしかありません。ほかのネット・プラットフォームのなりすましに注意！"
+          data-en="[NOTICE] The official account is only on X. Beware of impersonators on other platforms!"></span>
+  </div>
+
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4c-5 0-8 3.4-8 8s3.2 8 8 8 8-3.4 8-8-3-8-8-8Z" fill="currentColor"/><path d="M11 4c1-2 3-2.5 5-2" stroke="#397b3f" stroke-width="2" stroke-linecap="round"/><path d="M12 5c1.5-2 4-2 5-1-1 2-3 3-5 1Z" fill="#398b55"/></svg>
+        </span>
+        <span>温音ミカン</span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#about" data-ja="ミカンについて" data-en="About"></a>
+          <a href="#download" data-ja="音源ダウンロード" data-en="Download"></a>
+          <a href="#links" data-ja="リンク" data-en="Links"></a>
+        </div>
+        <button class="lang-button" id="langToggle" type="button" aria-label="Switch language" title="日本語 / English">🍊</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow" data-ja="UTAU VOICEBANK" data-en="UTAU VOICEBANK"></div>
+        <h1>温音<span>ミカン</span></h1>
+        <p class="subtitle" data-ja="みかん色の声を、あなたの音楽に。" data-en="A little citrus sparkle for your music."></p>
+        <p class="hero-copy" data-ja="こんにちは！UTAU音源「温音ミカン」の公式サイトへようこそ。ミカンと一緒に、歌を楽しもう！"
+           data-en="Welcome to the official website of the UTAU voicebank Onne Mikan. Let's make music together!"></p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#download" data-ja="音源をダウンロード" data-en="Download voicebank"></a>
+          <a class="btn btn-outline" href="#profile">
+            <span data-ja="キャラ設定へ" data-en="Character profile"></span>
+          </a>
+        </div>
+      </div>
+
+    <section class="section reveal" id="about">
+      <div class="section-head">
+        <small>ABOUT</small>
+        <h2 data-ja="温音ミカンって？" data-en="About Onne Mikan"></h2>
+        <p data-ja="まずは、ミカンのことを知ってね。" data-en="Get to know Mikan!"></p>
+      </div>
+      <div class="intro-card">
+        <p data-ja="温音ミカンは、みかんが大好きなUTAU音源です。あなたの曲や作品で、自由に歌わせてあげてください！"
+           data-en="Onne Mikan is an UTAU voicebank who loves mandarins. Let Mikan sing in your songs and creations!"></p>
+      </div>
+    </section>
+
+    <section class="section reveal" id="profile">
+      <div class="section-head">
+        <small>PROFILE</small>
+        <h2 data-ja="キャラ設定" data-en="Character Profile"></h2>
+        <p data-ja="温音ミカンのプロフィール" data-en="A few details about Mikan"></p>
+      </div>
+      <div class="profile-grid">
+        <article class="profile-card"><div class="label" data-ja="名前" data-en="NAME"></div><div class="value">温音ミカン</div></article>
+        <article class="profile-card"><div class="label" data-ja="由来" data-en="ORIGIN"></div><div class="value" data-ja="ただ単に温州みかんがうまかったから擬人化したくなっただけ"
+          data-en="I just thought mikan was so tasty that I wanted to personify it."></div></article>
+        <article class="profile-card"><div class="label" data-ja="持ち物" data-en="ITEM"></div><div class="value" data-ja="みかん" data-en="Mandarin orange"></div></article>
+        <article class="profile-card"><div class="label" data-ja="お酒" data-en="ALCOHOL"></div><div class="value" data-ja="飲まない" data-en="Does not drink"></div></article>
+        <article class="profile-card"><div class="label" data-ja="年齢" data-en="AGE"></div><div class="value" data-ja="15才" data-en="15 years old"></div></article>
+        <article class="profile-card"><div class="label" data-ja="服装" data-en="OUTFIT"></div><div class="value" data-ja="制服にボカロ要素を付け加えたもの" data-en="A school uniform with Vocaloid-inspired details"></div></article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="download">
+      <div class="section-head">
+        <small>VOICEBANK</small>
+        <h2 data-ja="音源ダウンロード" data-en="Voicebank Download"></h2>
+        <p data-ja="温音ミカンをお迎えしてね！" data-en="Download the voicebank and let Mikan sing!"></p>
+      </div>
+      <div class="download-card">
+        <div class="download-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v3h16v-3"/></svg>
+        </div>
+        <div class="download-copy">
+          <h3 data-ja="温音ミカン UTAU音源" data-en="Onne Mikan UTAU Voicebank"></h3>
+          <p data-ja="配布ファイルはGoogle Driveからダウンロードできます。利用前に利用規約を確認してください。"
+             data-en="Download the voicebank from Google Drive. Please read the Terms of Use before using it."></p>
+        </div>
+        <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1uiUsOglkY19cVVXqnetSEsaodDJXeVFT" target="_blank" rel="noopener noreferrer" data-ja="ZIP配布ページへ ↗" data-en="Download on Google Drive ↗"></a>
+      </div>
+    </section>
+
+    <section class="section reveal" id="links">
+      <div class="section-head">
+        <small>INFORMATION</small>
+        <h2 data-ja="規約・リンク" data-en="Policies & Links"></h2>
+        <p data-ja="安心して使ってもらうために。" data-en="Information for using the voicebank."></p>
+      </div>
+      <div class="legal-buttons">
+        <button class="btn btn-outline" type="button" data-open="terms" data-ja="利用規約" data-en="Terms of Use"></button>
+        <button class="btn btn-outline" type="button" data-open="privacy" data-ja="プライバシーポリシー" data-en="Privacy Policy"></button>
+        <a class="btn btn-primary" href="https://x.com/@ONNEMIKAN" target="_blank" rel="noopener noreferrer">X ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 温音ミカン / MIKANEKO</p>
+    <p data-ja="本サイトは温音ミカンのUTAU音源・キャラクター紹介サイトです。"
+       data-en="This is the official information site for the Onne Mikan UTAU voicebank and character."></p>
+  </footer>
+
+  <div class="modal-backdrop" id="terms" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+    <div class="modal">
+      <div class="modal-top"><h2 id="termsTitle" data-ja="UTAU音源利用規約" data-en="UTAU Voicebank Terms of Use"></h2><button class="close" type="button" aria-label="Close">×</button></div>
+      <div class="legal-content">
+        <p data-ja="この利用規約は、「温音ミカン」（以下「本音源」）の利用条件を定めるものです。本音源を使用される場合は、本規約に同意したものとみなします。"
+           data-en="These terms govern the use of “Onne Mikan” (the “Voicebank”). By using the Voicebank, you agree to these terms."></p>
+        <h3 data-ja="1. 基本事項" data-en="1. Basic Information"></h3>
+        <ul>
+          <li data-ja="音源名：温音ミカン" data-en="Voicebank: Onne Mikan"></li>
+          <li data-ja="中の人・配布者：MIKANEKO" data-en="Voice provider / Distributor: MIKANEKO"></li>
+          <li data-ja="配布場所：Google Drive" data-en="Distribution: Google Drive"></li>
+        </ul>
+        <h3 data-ja="2. 許可されていること（商用・非商用）" data-en="2. Permitted Uses (Commercial and Non-commercial)"></h3>
+        <ul>
+          <li data-ja="カバー曲・オリジナル曲の制作：本音源を使用した歌唱動画や楽曲の公開。"
+              data-en="Songs and covers: Create and publish songs or singing videos using the Voicebank."></li>
+          <li data-ja="メディア展開：ニコニコ動画、YouTube、SNS等への投稿、および同人CD等への収録。"
+              data-en="Media: Post on video platforms and social media, or include the Voicebank in independent CDs."></li>
+          <li data-ja="調整・改変：oto.iniの調整や、ピッチ・フラグ等の調声。"
+              data-en="Editing: Adjust oto.ini, pitch, flags, and other singing parameters."></li>
+          <li data-ja="二次創作：キャラクター設定に沿ったイラスト、MMDモデル、動画等の制作。"
+              data-en="Fan works: Create illustrations, MMD models, videos, and other works based on the character."></li>
+        </ul>
+        <h3 data-ja="3. 禁止事項" data-en="3. Prohibited Uses"></h3>
+        <ul>
+          <li data-ja="本音源ファイルの無断転載、および権利者であると偽る行為。"
+              data-en="Redistributing the Voicebank files without permission or falsely claiming ownership."></li>
+          <li data-ja="政治・宗教活動、暴力的表現、過度な性描写、誹謗中傷を目的とした利用。"
+              data-en="Use for political or religious activities, violent or sexually explicit content, or harassment and defamation."></li>
+          <li data-ja="他者の著作権や知的財産権を侵害する行為。"
+              data-en="Infringing on another person's copyright or intellectual property rights."></li>
+          <li data-ja="音源やキャラクターのイメージを著しく損なう悪質な改変。"
+              data-en="Malicious modifications that seriously damage the image of the Voicebank or character."></li>
+        </ul>
+        <h3 data-ja="4. 免責事項" data-en="4. Disclaimer"></h3>
+        <ul>
+          <li data-ja="本音源の利用によって生じたいかなるトラブルや損害について、配布者は一切の責任を負いません。"
+              data-en="The distributor is not responsible for any trouble or damages arising from use of the Voicebank."></li>
+          <li data-ja="規約の内容は予告なく変更・改定される場合があります。"
+              data-en="These terms may be changed or revised without prior notice."></li>
+        </ul>
+        <h3 data-ja="5. クレジット表記について" data-en="5. Credits"></h3>
+        <p data-ja="動画や作品内で本音源を使用する際は、可能な限り「温音ミカン」および「MIKANEKO」を記載してください。"
+           data-en="When using the Voicebank in a video or other work, please credit “Onne Mikan” and “MIKANEKO” whenever possible."></p>
+        <p><strong>Vocal / 温音ミカン by MIKANEKO</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="privacy" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="modal">
+      <div class="modal-top"><h2 id="privacyTitle" data-ja="プライバシーポリシー" data-en="Privacy Policy"></h2><button class="close" type="button" aria-label="Close">×</button></div>
+      <div class="legal-content">
+        <p data-ja="このサイトでは、訪問者の個人情報を入力・送信するフォームや、アクセス解析・広告配信のための独自スクリプトを設置していません。"
+           data-en="This website does not provide forms for submitting personal information, and does not use its own analytics or advertising scripts."></p>
+        <h3 data-ja="外部サービスについて" data-en="Third-party Services"></h3>
+        <p data-ja="音源の配布にはGoogle Drive、公式アカウントへの移動にはXを利用します。各サービスへ移動した後は、それぞれのプライバシーポリシーが適用されます。"
+           data-en="Google Drive is used for voicebank distribution, and X is linked as the official social account. Their own privacy policies apply when you visit those services."></p>
+        <h3 data-ja="ポリシーの変更" data-en="Changes"></h3>
+        <p data-ja="必要に応じて、このポリシーを変更する場合があります。"
+           data-en="This policy may be updated when necessary."></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentLang = "ja";
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-ja][data-en]").forEach(el => {
+        el.textContent = el.dataset[lang];
+      });
+      document.getElementById("langToggle").setAttribute(
+        "aria-label", lang === "ja" ? "Switch to English" : "日本語に切り替え"
+      );
+    }
+    document.getElementById("langToggle").addEventListener("click", () => {
+      setLanguage(currentLang === "ja" ? "en" : "ja");
+    });
+
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add("visible"));
+    }
+
+    const modals = document.querySelectorAll(".modal-backdrop");
+    function closeModals() {
+      modals.forEach(modal => modal.classList.remove("open"));
+      document.body.style.overflow = "";
+    }
+    document.querySelectorAll("[data-open]").forEach(button => {
+      button.addEventListener("click", () => {
+        closeModals();
+        document.getElementById(button.dataset.open).classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+    document.querySelectorAll(".close").forEach(button => button.addEventListener("click", closeModals));
+    modals.forEach(modal => {
+      modal.addEventListener("click", event => { if (event.target === modal) closeModals(); });
+    });
+    document.addEventListener("keydown", event => { if (event.key === "Escape") closeModals(); });
+  </script>
+</body>
+</html>
